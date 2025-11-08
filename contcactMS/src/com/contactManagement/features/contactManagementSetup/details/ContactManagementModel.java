@@ -1,0 +1,4 @@
+package com.contactManagement.features.contactManagementSetup.details;
+
+public class ContactManagementModel {
+}
