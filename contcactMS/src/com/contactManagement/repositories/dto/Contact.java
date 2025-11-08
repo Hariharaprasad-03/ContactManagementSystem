@@ -8,7 +8,7 @@ public class Contact {
     private String personalNumber ;
     private String officeNumber ;
 
-    Contact(){
+    public Contact(){
 
     }
 
