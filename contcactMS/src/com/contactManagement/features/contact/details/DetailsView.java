@@ -10,7 +10,7 @@ public class DetailsView  extends BaseView {
     private final DetailsModel model ;
     private final Scanner scanner = new Scanner(System.in);
 
-    DetailsView(){
+     public DetailsView(){
         this.model = new DetailsModel(this);
     }
 

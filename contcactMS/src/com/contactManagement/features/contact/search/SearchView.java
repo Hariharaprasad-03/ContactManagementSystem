@@ -10,7 +10,7 @@ public class SearchView extends BaseView {
     private final SearchModel model;
     private final Scanner scanner = new Scanner(System.in);
 
-    SearchView(){
+     public SearchView(){
         this.model = new SearchModel(this);
     }
     public  void init() { showMenu();}
