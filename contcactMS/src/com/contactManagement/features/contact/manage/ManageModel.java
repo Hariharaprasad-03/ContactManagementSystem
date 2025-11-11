@@ -82,4 +82,23 @@ public class ManageModel extends BaseModel {
         }
     }
 
+
+    public void addContactToBlockList(String nameToBlock) {
+        final String searchName = nameToBlock.trim();
+
+
+        Optional<Contact> contactOptional =
+                ContactDb.getInstance().getAllContacts().stream()
+                        .filter(con -> con.getName().equalsIgnoreCase(searchName))
+                        .findFirst();
+
+        if (contactOptional.isPresent()) {
+            Contact contact = contactOptional.get();
+            ContactDb.getInstance().addBlockeList(contact);
+            view.showSuccessMessage("Contact '" + searchName + "' added to the block list successfully.");
+        } else {
+            view.errorMessage("Contact with name '" + searchName + "' not found.");
+        }
+    }
+
 }

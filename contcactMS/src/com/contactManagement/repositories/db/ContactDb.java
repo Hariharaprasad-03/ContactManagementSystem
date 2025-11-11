@@ -25,21 +25,28 @@ public class ContactDb {
             dbInstance =new ContactDb();
         return dbInstance;
     }
+
     public List<Contact> getAllContacts(){
         return new ArrayList(contacts);
     }
-    public List<CallRecord> getAllCallHistory(){
+
+    public List<CallRecord> getAllCallHistory()
+    {
         return new ArrayList(callHistory);
     }
+
+    public boolean isContactExist( Contact contact) {
+
+        int index = contacts.indexOf(contact);
+
+        return index != 0;
+    }
+
     public void addContact(Contact contact){
         contacts.add(contact);
-        if (contact.getPersonalNumber()!= null){
-            existingNumbers.add(contact.getPersonalNumber());
-        }
-        if (contact.getOfficeNumber() != null){
-            existingNumbers.add(contact.getOfficeNumber());
-        }
+
     }
+
     public void addCallRecord(CallRecord callRecord){
         callHistory.add(0,callRecord);
 
@@ -51,21 +58,26 @@ public class ContactDb {
             recentCalls.offer(callRecord);
         }
     }
+
     public void addBlockeList(Contact contact){
 
        blockednumbers.add(contact);
     }
+
+   // To get recent Calls
     public Deque getRecentCalls (){
         return recentCalls ;
     }
+    // To delete a Contact :
     public void deleteContact( Contact contact){
-        contacts.remove(contact);        // have to specify Id for contact and CallRecord
+        contacts.remove(contact);
     }
+   // To delete Call Record
     public void deleteCallRecord(CallRecord callRecord){
         callHistory.remove(callRecord) ;
-
-
     }
+
+   // Remove call record from History
     public void removeFromBlockedList ( Contact contact){
         blockednumbers.remove(contact);
     }

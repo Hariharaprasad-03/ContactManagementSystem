@@ -7,8 +7,8 @@ import java.util.Scanner;
 
 public class ManageView extends BaseView {
 
-    private ManageModel model ;
-    private Scanner scanner = new Scanner(System.in);
+    private final  ManageModel model ;
+    private final  Scanner scanner = new Scanner(System.in);
 
     public ManageView (){
         this.model = new ManageModel(this);
@@ -123,7 +123,12 @@ public class ManageView extends BaseView {
         System.out.println(" Enter name to Remove");
         String nameToRemove = getName();
         model.removeContact(nameToRemove);
-
+    }
+    public void addToBlockList()
+    {
+        System.out.println("Enter name to Add Block list");
+        String nameToBlock = getName();
+        model.addContactToBlockList(nameToBlock);
 
     }
 
