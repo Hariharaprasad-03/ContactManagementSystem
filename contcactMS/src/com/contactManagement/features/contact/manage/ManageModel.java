@@ -10,6 +10,7 @@ public class ManageModel extends BaseModel {
 
     private ManageView view ;
     public ManageModel(ManageView view){
+
         this.view = view ;
     }
 
@@ -56,7 +57,6 @@ public class ManageModel extends BaseModel {
             return false;
         }
         for (int i=0 ; i<n ; ++i){
-
             char ch = number.charAt(i);
             if( !( ch >= '0' && ch<='9')){
                 return false;
