@@ -15,12 +15,16 @@ public class ManageModel extends BaseModel {
 
      void addContact(Contact contact){
 
-        if(validateContact(contact)){
-            ContactDb.getInstance().addContact(contact);
-            view.showSuccessMessage(" Successfully Contact is Added");
-            return ;
+        if( !validateContact(contact)){
+            view.errorMessage("Invalid Contact");
         }
-        view.errorMessage("Invalid contact ");
+        else if ( ContactDb.getInstance().isContactExist(contact)) {
+            view.errorMessage(" This contact is Alreay Exits");
+        }
+        else {
+            ContactDb.getInstance().addContact(contact);
+            view.showSuccessMessage("Contact is Added Successfully");
+        }
     }
     public boolean validateContact( Contact  contact){
 
