@@ -58,10 +58,9 @@ public class ManageModel extends BaseModel {
         }
         for (int i=0 ; i<n ; ++i){
             char ch = number.charAt(i);
-            if( !( ch >= '0' && ch<='9')){
+            if(  ch < '0' && ch >'9'){
                 return false;
             }
-
         }
         return true;
     }
