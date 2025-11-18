@@ -1,55 +1,58 @@
 package com.contactManagement.repositories.dto;
 
-import java.util.Objects ;
+import java.util.Objects;
 
 public class Contact {
 
     private String name;
-    private String personalNumber ;
-    private String officeNumber ;
+    private String personalNumber;
 
-    public Contact(){
-
+    public Contact() {
     }
 
     public String getName() {
         return name;
-    }
-    public String getOfficeNumber() {
-        return officeNumber;
-    }
-    public String getPersonalNumber() {
-        return personalNumber;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setOfficeNumber(String officeNumber) {
-        this.officeNumber = officeNumber;
+    public String getPersonalNumber() {
+        return personalNumber;
     }
 
     public void setPersonalNumber(String personalNumber) {
         this.personalNumber = personalNumber;
     }
 
+    // --- New Methods Below ---
+
     @Override
-    public String toString(){
-        return "*" ;
-    }
-    @Override
-    public  int hashCode(){
-        return Objects.hash(name,personalNumber,officeNumber) ;
-    }
-    @Override
-    public boolean equals(Object o){
-        if(this == o) return true;
-        if(getClass() != o.getClass())return false;
-        Contact obj = (Contact) o;
-        return ( name == obj.getName() &&
-            officeNumber == obj.getOfficeNumber() &&
-                personalNumber == obj.getPersonalNumber());
+    public String toString() {
+        return "Contact{" +
+                "name='" + name + '\'' +
+                ", personalNumber='" + personalNumber + '\'' +
+                '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        // 1. Check if it is the exact same reference
+        if (this == o) return true;
+
+        // 2. Check if the other object is null or a different class type
+        if (o == null || getClass() != o.getClass()) return false;
+
+        // 3. Cast and compare fields
+        Contact contact = (Contact) o;
+        return Objects.equals(name, contact.name) &&
+                Objects.equals(personalNumber, contact.personalNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        // Generates a hash based on the fields used in equals
+        return Objects.hash(name, personalNumber);
+    }
 }

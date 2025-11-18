@@ -3,30 +3,39 @@ package com.contactManagement.features.contact.details;
 import com.contactManagement.features.base.BaseView;
 import com.contactManagement.repositories.dto.Contact;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class DetailsView  extends BaseView {
 
     private final DetailsModel model ;
     private final Scanner scanner = new Scanner(System.in);
+    private List<String> options = new ArrayList<>();
+
 
      public DetailsView(){
         this.model = new DetailsModel(this);
     }
 
-    public void init() { showMenu();}
+    public void init() {
+
+         loadOptions();
+         showMenu();
+     }
+    public void loadOptions() {
+         options.add("1 . view contact details");
+         options.add("2 . Back to MainMenu");
+         options.add("3 . exit App");
+    }
+
 
     public void showMenu(){
 
         while (true){
-            System.out.println("====== Contact Details ======");
-            System.out.println("1 . view contact details");
-            System.out.println("2 . Back to MainMenu");
-            System.out.println("3 . exit App");
-            System.out.println( " Enter Your Option");
 
             try{
-                int choice = Integer.parseInt(scanner.nextLine().trim());
+                int choice = selectProcess(options);
 
                 switch (choice){
                     case 1 :{

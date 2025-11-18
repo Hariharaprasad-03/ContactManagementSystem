@@ -17,10 +17,10 @@ public class ManageModel extends BaseModel {
      void addContact(Contact contact){
 
         if( !validateContact(contact)){
-            view.errorMessage("Invalid Contact");
+            view.showErrorMessage("Invalid Contact");
         }
         else if ( ContactDb.getInstance().isContactExist(contact)) {
-            view.errorMessage(" This contact is Alreay Exits");
+            view.showErrorMessage(" This contact is Alreay Exits");
         }
         else {
             ContactDb.getInstance().addContact(contact);
@@ -30,35 +30,26 @@ public class ManageModel extends BaseModel {
     public boolean validateContact( Contact  contact){
 
         if( contact.getName() == null){
+            view.showErrorMessage("please Enter valid Name");
             return false;
         }
-        boolean num1 = false;
-        boolean num2 = false;
-        if( contact.getPersonalNumber() != null && validateNumber(contact.getPersonalNumber())){
-            num1 = true;
+        if ( ! validateNumber(contact.getPersonalNumber()) ){
+            return false;
         }
-        else {
-            contact.setPersonalNumber("");
-        }
-        if( contact.getOfficeNumber() !=null && validateNumber(contact.getOfficeNumber())){
-            num2 = true;
-        }
-        else {
-            contact.setOfficeNumber("");
-        }
-
-        return num1 || num2;
+        return true;
     }
 
     public boolean validateNumber(String number){
 
         int n = number.length();
         if( n != 10){
+            view.showErrorMessage("The contact Number should be 10 digit ");
             return false;
         }
         for (int i=0 ; i<n ; ++i){
             char ch = number.charAt(i);
             if(  ch < '0' && ch >'9'){
+                view.showErrorMessage("Contact Number Have Only Integers");
                 return false;
             }
         }
@@ -81,7 +72,7 @@ public class ManageModel extends BaseModel {
 
             view.showSuccessMessage("Contact '" + searchName + "' removed successfully.");
         } else {
-            view.errorMessage("Contact with name '" + searchName + "' not found.");
+            view.showErrorMessage("Contact with name '" + searchName + "' not found.");
         }
     }
 
@@ -100,7 +91,7 @@ public class ManageModel extends BaseModel {
             ContactDb.getInstance().addBlockeList(contact);
             view.showSuccessMessage("Contact '" + searchName + "' added to the block list successfully.");
         } else {
-            view.errorMessage("Contact with name '" + searchName + "' not found.");
+            view.showErrorMessage("Contact with name '" + searchName + "' not found.");
         }
     }
 

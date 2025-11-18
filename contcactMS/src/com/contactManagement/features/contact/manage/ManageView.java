@@ -3,18 +3,29 @@ package com.contactManagement.features.contact.manage;
 import com.contactManagement.features.base.BaseView;
 import com.contactManagement.repositories.dto.Contact;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ManageView extends BaseView {
 
     private final  ManageModel model ;
     private final  Scanner scanner = new Scanner(System.in);
+    private List<String> options = new ArrayList<>();
 
     public ManageView (){
         this.model = new ManageModel(this);
     }
     public void init() {
+        loadOptions();
         showMenu();
+    }
+
+    public void loadOptions() {
+        options.add("1 : Add new Contct") ;
+        options.add("2 : Delete Contact") ;
+        options.add("3 : Back to Main Menu") ;
+        options.add("4 : Exit") ;
     }
 
     public void showMenu(){
@@ -22,15 +33,9 @@ public class ManageView extends BaseView {
 
 
          while ( true){
-
-             System.out.println("1 : Add new Contct");
-             System.out.println("2 : Delete Contact");
-             System.out.println("3 : Back to Main Menu");
-             System.out.println("4 : Exit");
-
              try {
                  System.out.println("Enter your choice");
-                 int choice = scanner.nextInt();
+                 int choice = selectProcess(options);
                  switch (choice) {
                      case 1: {
                          addNewContact();
@@ -59,8 +64,6 @@ public class ManageView extends BaseView {
         Contact contact = new Contact();
         contact.setName(getName());
         contact.setPersonalNumber(getNumber());
-        contact.setOfficeNumber(getNumber());
-
         model.addContact(contact);
     }
 
@@ -94,28 +97,12 @@ public class ManageView extends BaseView {
         do {
             number = scanner.nextLine().trim();
 
-            if (! validateNumber(number)){
+            if (number == null){
                 System.out.println(" Please Enter a Valid Number");
             }
             else break;
         } while(true);
         return number;
-    }
-    public boolean validateNumber(String number){
-
-        int n = number.length();
-        if( n != 10){
-            return false;
-        }
-        for (int i=0 ; i<n ; ++i){
-
-            char ch = number.charAt(i);
-            if( !( ch >= '0' && ch<='9')){
-                return false;
-            }
-
-        }
-        return true;
     }
 
     public void removeContact(){
@@ -137,8 +124,11 @@ public class ManageView extends BaseView {
     public void showSuccessMessage(String message){
         System.out.println( message );
     }
-    public void errorMessage( String message){
+    public void showErrorMessage( String message){
         System.out.println(message);
     }
 }
+
+
+
 
