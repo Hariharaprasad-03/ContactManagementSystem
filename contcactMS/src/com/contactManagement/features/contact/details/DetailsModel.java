@@ -18,7 +18,7 @@ public class DetailsModel extends BaseModel {
 
      void getContactDetails( String name){
         Optional<Contact> contactOptional = ContactDb.getInstance().getAllContacts().stream()
-                .filter(c-> c.getName().equals(name)).findFirst() ;
+                .filter(c-> c.getName().equalsIgnoreCase(name)).findFirst() ;
        view.displayContactDetails(contactOptional.orElse(null));
     }
 }

@@ -1,6 +1,7 @@
 package com.contactManagement.features.contact.details;
 
 import com.contactManagement.features.base.BaseView;
+import com.contactManagement.features.contact.ContactView;
 import com.contactManagement.repositories.dto.Contact;
 
 import java.util.ArrayList;
@@ -25,8 +26,9 @@ public class DetailsView  extends BaseView {
      }
     public void loadOptions() {
          options.add("1 . view contact details");
-         options.add("2 . Back to MainMenu");
-         options.add("3 . exit App");
+         options.add("2 . Go to Contact Menu");
+         options.add("3 . Back to MainMenu");
+         options.add("4 . exit App");
     }
 
 
@@ -34,18 +36,26 @@ public class DetailsView  extends BaseView {
 
         while (true){
 
+            System.out.println("======= Contact Details Menu =======");
+
             try{
                 int choice = selectProcess(options);
 
                 switch (choice){
                     case 1 :{
                         viewContactDetails();
+                        break;
                     }
-                    case 2: {
+                    case 3: {
                         System.out.println("have to code");
+                        break ;
                     }
-                    case 3 : {
+                    case 4 : {
                         exitApp();
+                    }
+                    case 2 : {
+                        new ContactView().init();
+                        break;
                     }
                     default:{
                         System.out.println(" enter valid option");
@@ -73,7 +83,7 @@ public class DetailsView  extends BaseView {
         System.out.println("===== contact Details =====") ;
         System.out.println("name : " + contact.getName()) ;
         System.out.println("personal Number : " + contact.getPersonalNumber()) ;
-        System.out.println("Office Number  : " + contact.getOfficeNumber()) ;
+
     }
 
 }

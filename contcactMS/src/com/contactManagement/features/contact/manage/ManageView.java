@@ -1,6 +1,7 @@
 package com.contactManagement.features.contact.manage;
 
 import com.contactManagement.features.base.BaseView;
+import com.contactManagement.features.contact.ContactView;
 import com.contactManagement.repositories.dto.Contact;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class ManageView extends BaseView {
     public void loadOptions() {
         options.add("1 : Add new Contct") ;
         options.add("2 : Delete Contact") ;
+        options.add("3 :Contacts Menu") ;
         options.add("3 : Back to Main Menu") ;
         options.add("4 : Exit") ;
     }
@@ -31,10 +33,11 @@ public class ManageView extends BaseView {
     public void showMenu(){
 
 
-
          while ( true){
              try {
-                 System.out.println("Enter your choice");
+
+                 System.out.println(" ======= Contact Mange Menu ====== \n");
+
                  int choice = selectProcess(options);
                  switch (choice) {
                      case 1: {
@@ -46,10 +49,14 @@ public class ManageView extends BaseView {
                          break;
                      }
                      case 3: {
-
+                         new ContactView().init();
                      }
-                     case 4 :
+                     case 4 : {
+                         System.out.println(" have to code");
+                     }
+                     case 5 : {
                          exitApp();
+                     }
                  }
              }
              catch (NumberFormatException e){
@@ -62,6 +69,7 @@ public class ManageView extends BaseView {
     public void addNewContact(){
 
         Contact contact = new Contact();
+        System.out.println("Enter Contact Person Name");
         contact.setName(getName());
         contact.setPersonalNumber(getNumber());
         model.addContact(contact);
@@ -70,7 +78,6 @@ public class ManageView extends BaseView {
     public String getName(){
         String name = "";
         do {
-            System.out.println("Enter your Name");
             name = scanner.nextLine().trim();
 
             if (name == null) {

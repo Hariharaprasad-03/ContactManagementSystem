@@ -2,6 +2,8 @@ package com.contactManagement.features.contact.search;
 
 import com.contactManagement.features.base.BaseView;
 import com.contactManagement.repositories.dto.Contact;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -9,22 +11,48 @@ public class SearchView extends BaseView {
 
     private final SearchModel model;
     private final Scanner scanner = new Scanner(System.in);
+    private List<String> options = new ArrayList<>();
 
-     public SearchView(){
+    public SearchView(){
         this.model = new SearchModel(this);
     }
-    public  void init() { showMenu();}
+    public  void init() {
+         loadOptions();
+         showMenu();
+    }
+
+    public void loadOptions() {
+
+        options.add("1 .  search contact") ;
+        options.add("2 .  Go to Contacts Menu");
+        options.add("3 . Back To MainMenu") ;
+        options.add("3 . exit App()") ;
+
+    }
 
     private void showMenu(){
 
         while (true){
             System.out.println("===== Search Contact Details =====");
-            System.out.println("1 .  search contact");
-            System.out.println("2 . Back To MainMenu");
-            System.out.println("3 . exit App()");
 
             try {
-                int choice = Integer.parseInt(scanner.nextLine().trim());
+                int choice = selectProcess(options) ;
+
+                switch (choice){
+
+                    case 1 : {
+                        getSearchDeatsils();
+                    }
+                    case 2 : {
+                        new com.contactManagement.features.contact.ContactView().init();
+                    }
+                    case 3 : {
+                        System.out.println(" have to Code");
+                    }
+                    case 4 : {
+                        exitApp();
+                    }
+                }
             }
             catch ( NumberFormatException e){
                 System.out.println(" please enter valid Number ");
@@ -43,9 +71,7 @@ public class SearchView extends BaseView {
         }
         System.out.println("Search Details :");
         for (Contact c : results){
-            System.out.println( " name   :" + c.getName());
-            System.out.println(" personal Number :" + c.getPersonalNumber());
-            System.out.println("office Number :" + c.getOfficeNumber());
+            System.out.println( c.toString());
         }
 
     }

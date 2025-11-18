@@ -3,32 +3,42 @@ package com.contactManagement.features.contact;
 import com.contactManagement.features.base.BaseView;
 import com.contactManagement.features.contact.search.SearchView;
 import com.contactManagement.repositories.dto.Contact;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ContactView extends BaseView {
 
     private ContactModel model ;
     private Scanner scanner = new Scanner(System.in);
+    private List<String> options = new ArrayList<>();
 
     public ContactView (){
         model = new ContactModel(this);
     }
+
     public void init(){
+        loadOptions();
         showMenu();
     }
+    public void loadOptions() {
+        options.add("1 : View All Contact List");
+        options.add("2 : Manage Contacts ");
+        options.add("3 : view Contact Details");
+        options.add("4 : search Contact ");
+        options.add("5 : back to MainMenu");
+        options.add("6 : Exit App");
+
+    }
+
     public void showMenu(){
 
         while( true){
 
-            System.out.println("1 : View All Contact List");
-            System.out.println("2 : Manage Contacts ");
-            System.out.println("3 : view Contact Details");
-            System.out.println("4 : search Contact ");
-            System.out.println("5 : back to MainMenu");
-            System.out.println("6 : Exit App");
-            System.out.println("\nEnter your Option");
+            System.out.println("\n====== Contact Menu ========");
             try {
-                int choice = Integer.parseInt(scanner.nextLine().trim());
+                int choice = selectProcess(options);
 
                 switch(choice)
                 {
@@ -55,12 +65,12 @@ public class ContactView extends BaseView {
                         exitApp();
                     }
                     default:{
-                        System.out.println(" please enter valid Option ");
+                        System.out.println("\nplease enter valid Option ");
                     }
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("Please enter valid Number");
+                System.out.println("\nPlease enter valid Number");
             }
         }
 
@@ -72,12 +82,12 @@ public class ContactView extends BaseView {
     }
     public void displayAllContacts(java.util.List<Contact> contacts){
 
-        System.out.println("Contacts List ");
-        System.out.printf("%-15s  %-15s %-15s" , "Name","PersonalNumber","officeNumber");
+        System.out.println("\nContacts List ");
+        System.out.printf("\n%-15s  %-15s" , "Name","PersonalNumber");
         for ( Contact contact : contacts) {
 
-            System.out.printf("%-15s  %-15s %-15s" , contact.getName(),
-                    contact.getPersonalNumber(),contact.getOfficeNumber());
+            System.out.printf("\n%-15s  %-15s " , contact.getName(),
+                    contact.getPersonalNumber());
         }
     }
 
