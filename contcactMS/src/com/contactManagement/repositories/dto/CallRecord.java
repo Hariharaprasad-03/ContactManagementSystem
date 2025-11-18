@@ -7,7 +7,7 @@ public class CallRecord {
     private String callEndTime;
     private String callDuration;
 
-    CallRecord(){
+    public CallRecord(){
 
     }
 
