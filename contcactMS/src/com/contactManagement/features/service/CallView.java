@@ -45,6 +45,7 @@ public class CallView extends BaseView {
                     }
                     case 2 : {
                         new com.contactManagement.features.contact.ContactView().init();
+                        break;
                     }
                     case 3 : {
                         System.out.println(" have to Code");

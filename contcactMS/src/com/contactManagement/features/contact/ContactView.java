@@ -27,8 +27,9 @@ public class ContactView extends BaseView {
         options.add("2 : Manage Contacts ");
         options.add("3 : view Contact Details");
         options.add("4 : search Contact ");
-        options.add("5 : back to MainMenu");
-        options.add("6 : Exit App");
+        options.add("5 : Go to Caller");
+        options.add("6 : back to MainMenu");
+        options.add("7 : Exit App");
 
     }
 
@@ -59,9 +60,9 @@ public class ContactView extends BaseView {
                         break;
                     }
                     case 5 :{
-                        return;
+                        new com.contactManagement.features.service.CallView().init();
                     }
-                    case 6 :{
+                    case 7 :{
                         exitApp();
                     }
                     default:{
