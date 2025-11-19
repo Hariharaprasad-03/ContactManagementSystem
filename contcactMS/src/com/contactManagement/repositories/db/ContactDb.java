@@ -65,8 +65,8 @@ public class ContactDb {
     }
 
    // To get recent Calls
-    public Deque getRecentCalls (){
-        return recentCalls ;
+    public List<CallRecord> getRecentCalls (){
+        return new ArrayList<>(recentCalls);
     }
     // To delete a Contact :
     public void deleteContact( Contact contact){

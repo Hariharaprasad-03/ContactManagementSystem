@@ -18,7 +18,7 @@ abstract public class BaseView {
 
             System.out.println(op);
         }
-        System.out.println("\nSelect the Option \n");
+        System.out.print("\nSelect the Option :");
         option = sc.nextInt();
         return option;
     }

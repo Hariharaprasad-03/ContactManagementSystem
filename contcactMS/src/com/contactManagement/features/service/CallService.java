@@ -1,7 +1,6 @@
 package com.contactManagement.features.service;
 
 import com.contactManagement.repositories.db.ContactDb;
-
 import com.contactManagement.repositories.dto.CallRecord;
 import com.contactManagement.repositories.dto.Contact;
 
@@ -37,7 +36,6 @@ public class CallService {
         System.out.print("Enter name to call: ");
         String searchName = scanner.nextLine();
 
-        // FIXED: findFirst() returns Optional<Contact>, not Contact directly
         Optional<Contact> contactOpt = ContactDb.getInstance().getAllContacts().stream()
                 .filter(c -> c.getName().equalsIgnoreCase(searchName))
                 .findFirst();
@@ -51,7 +49,9 @@ public class CallService {
 
         // 2. Simulate Call (Start Setup)
         System.out.println("Connecting to " + contact.getName() + " (" + contact.getPersonalNumber() + ")...");
-        System.out.println("Press 'e' and Enter to end the call.");
+
+        // <<< CHANGED HERE: Updated instruction text >>>
+        System.out.println("Press 'Enter' to end the call.");
         System.out.println("------------------------------------------------");
 
         AtomicBoolean callActive = new AtomicBoolean(true);
@@ -79,13 +79,17 @@ public class CallService {
         timerThread.start();
         // -----------------------------------------
 
-        // 3. Wait for User Input ('e' to end)
-        while (callActive.get()) {
-            String input = scanner.next();
-            if (input.equalsIgnoreCase("e")) {
-                callActive.set(false);
-            }
-        }
+        // 3. Wait for User Input (Enter Key Only)
+
+        // <<< CHANGED HERE: Logic to wait for Enter key >>>
+        // The scanner pauses here until the user hits 'Enter'.
+        // We don't need to check for specific text anymore.
+        scanner.nextLine();
+
+        // Once the line is read (Enter pressed), we stop the loop
+        callActive.set(false);
+
+        // <<< END OF CHANGES >>>
 
         try {
             timerThread.join();
@@ -102,7 +106,6 @@ public class CallService {
         System.out.println("\nCall Ended.");
 
         // 4. Create Record and Add to DB
-        // FIXED: Use Setters because your DTO has no constructor with arguments
         CallRecord record = new CallRecord();
         record.setName(contact.getName());
         record.setContactNo(contact.getPersonalNumber());
@@ -114,9 +117,7 @@ public class CallService {
     }
 
     private void addToDb(CallRecord record) {
-        // Assuming you have a Singleton CallHistoryDb similar to ContactDb
         ContactDb.getInstance().addCallRecord(record);
-
         System.out.println(">> Call record saved: " + record.getName() + " | Duration: " + record.getCallDuration());
     }
 }
