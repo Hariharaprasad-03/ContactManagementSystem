@@ -43,7 +43,7 @@ public class CallHistoryView extends BaseView {
                         break;
                     }
                     case 2 : {
-                        System.out.println(" have to code");
+                        new com.contactManagement.HomePage.HomeView().init();
                         break;
                     }
                     case 3 : {

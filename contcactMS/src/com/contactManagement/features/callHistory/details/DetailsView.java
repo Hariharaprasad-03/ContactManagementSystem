@@ -53,7 +53,7 @@ public class DetailsView  extends BaseView {
                          break ;
                      }
                      case 4: {
-                         System.out.println(" have to code");
+                         new com.contactManagement.HomePage.HomeView().init();
                          break;
                      }
                      case 5: {

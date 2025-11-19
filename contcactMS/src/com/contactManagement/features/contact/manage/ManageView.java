@@ -52,7 +52,8 @@ public class ManageView extends BaseView {
                          new ContactView().init();
                      }
                      case 4 : {
-                         System.out.println(" have to code");
+                         new com.contactManagement.HomePage.HomeView().init();
+                         break;
                      }
                      case 5 : {
                          exitApp();

@@ -65,6 +65,10 @@ public class ContactView extends BaseView {
                     case 7 :{
                         exitApp();
                     }
+                    case 6 : {
+                        new com.contactManagement.HomePage.HomeView().init();
+                        break;
+                    }
                     default:{
                         System.out.println("\nplease enter valid Option ");
                     }

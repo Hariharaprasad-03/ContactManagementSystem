@@ -47,7 +47,8 @@ public class SearchView extends BaseView {
                         new com.contactManagement.features.contact.ContactView().init();
                     }
                     case 3 : {
-                        System.out.println(" have to Code");
+                        new com.contactManagement.HomePage.HomeView().init();
+                        break;
                     }
                     case 4 : {
                         exitApp();
