@@ -39,7 +39,7 @@ public class ContactDb {
 
         int index = contacts.indexOf(contact);
 
-        return index > 0;
+        return index >= 0;
     }
 
     public void addContact(Contact contact){

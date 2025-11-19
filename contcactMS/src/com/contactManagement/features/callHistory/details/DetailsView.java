@@ -32,7 +32,7 @@ public class DetailsView  extends BaseView {
      }
      public void showMenu() {
          while (true) {
-             System.out.println("====== Call Log Details Menu  ====");
+             System.out.println("\n====== Call Log Details Menu  ====");
 
              try {
 

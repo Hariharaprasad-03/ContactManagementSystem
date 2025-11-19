@@ -32,7 +32,7 @@ public class CallHistoryView extends BaseView {
 
         while (true) {
 
-            System.out.println("====== Call Histroy View ======");
+            System.out.println("\n====== Call Histroy View ======");
 
             try {
                 int option = selectProcess(options);

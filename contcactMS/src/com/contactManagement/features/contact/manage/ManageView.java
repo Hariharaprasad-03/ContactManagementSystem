@@ -36,7 +36,7 @@ public class ManageView extends BaseView {
          while ( true){
              try {
 
-                 System.out.println(" ======= Contact Mange Menu ====== \n");
+                 System.out.println(" \n======= Contact Mange Menu ====== \n");
 
                  int choice = selectProcess(options);
                  switch (choice) {

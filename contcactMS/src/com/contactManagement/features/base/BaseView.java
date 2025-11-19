@@ -22,4 +22,7 @@ abstract public class BaseView {
         option = sc.nextInt();
         return option;
     }
+    public void init(){
+
+    }
 }
