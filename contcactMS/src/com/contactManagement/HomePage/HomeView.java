@@ -12,7 +12,8 @@ public class HomeView extends BaseView {
     public void loadOptions() {
         options.add("1 . Contact Menu");
         options.add("2 . Call Logs Menu ");
-        options.add("3 . exitApp()");
+        options.add("3 . Go to Caller");
+        options.add("3 . ExitApp");
     }
     public  void init() {
 
@@ -38,8 +39,12 @@ public class HomeView extends BaseView {
                         new com.contactManagement.features.callHistory.CallHistoryView().init();
                         break;
                     }
-                    case 3 : {
+                    case 4 : {
                         exitApp();
+                    }
+                    case 3 : {
+                        new com.contactManagement.features.service.CallView().init();
+                        break;
                     }
                     default:{
                         System.out.println(" please Enter valid Option");

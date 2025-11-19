@@ -26,8 +26,8 @@ public class ManageView extends BaseView {
         options.add("1 : Add new Contct") ;
         options.add("2 : Delete Contact") ;
         options.add("3 :Contacts Menu") ;
-        options.add("3 : Back to Main Menu") ;
-        options.add("4 : Exit") ;
+        options.add("4 : Back to Main Menu") ;
+        options.add("5 : Exit") ;
     }
 
     public void showMenu(){

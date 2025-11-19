@@ -23,8 +23,9 @@ public class CallHistoryView extends BaseView {
     public void loadOptions() {
 
         options.add("1 . Call history Details");
-        options.add("2 . Back To Main Menu");
-        options.add("3 . Exit App");
+        options.add("2 . search call Logs");
+        options.add("3 . Back To Main Menu");
+        options.add("4 . Exit App");
     }
 
     public void showMenu() {
@@ -42,12 +43,15 @@ public class CallHistoryView extends BaseView {
                         new com.contactManagement.features.callHistory.details.DetailsView().init();
                         break;
                     }
-                    case 2 : {
+                    case 3 : {
                         new com.contactManagement.HomePage.HomeView().init();
                         break;
                     }
-                    case 3 : {
+                    case 4 : {
                         exitApp();
+                    }
+                    case 2 : {
+                        new com.contactManagement.features.callHistory.search.SearchView().init();
                     }
                     default:{
                         System.out.println("please enter valid option ");

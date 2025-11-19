@@ -48,7 +48,8 @@ public class CallView extends BaseView {
                         break;
                     }
                     case 3 : {
-                        System.out.println(" have to Code");
+                        new com.contactManagement.HomePage.HomeView().init();
+                        break;
                     }
                     case 4 : {
                         exitApp();

@@ -76,10 +76,10 @@ public class DetailsView  extends BaseView {
      }
 
      public void displayRecords(List<CallRecord> records){
-         System.out.printf("%-15s %-15s %-10s","Contact Name","Contact Number","Call Duration");
+         System.out.printf("%-15s %-15s %-10s\n","Contact Name","Contact Number","Call Duration");
          for ( CallRecord record : records) {
 
-             System.out.printf("%-15s %-15s %-10s",
+             System.out.printf("%-15s %-15s %-10s\n",
                      record.getName(),record.getContactNo(),record.getCallDuration());
          }
      }
