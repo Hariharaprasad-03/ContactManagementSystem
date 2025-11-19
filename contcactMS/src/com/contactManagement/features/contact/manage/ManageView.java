@@ -57,6 +57,9 @@ public class ManageView extends BaseView {
                      case 5 : {
                          exitApp();
                      }
+                     default: {
+                         System.out.println(" please Enter a Valid Option");
+                     }
                  }
              }
              catch (NumberFormatException e){

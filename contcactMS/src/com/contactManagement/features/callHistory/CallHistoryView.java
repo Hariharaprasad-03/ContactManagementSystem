@@ -23,12 +23,42 @@ public class CallHistoryView extends BaseView {
     public void loadOptions() {
 
         options.add("1 . Call history Details");
-        options.add("2 . Search On Call History");
-        options.add("3 . Back To Main Menu");
-        options.add("4 . Exit App");
+        options.add("2 . Back To Main Menu");
+        options.add("3 . Exit App");
     }
 
     public void showMenu() {
 
+        while (true) {
+
+            System.out.println("====== Call Histroy View ======");
+
+            try {
+                int option = selectProcess(options);
+
+                switch(option) {
+
+                    case 1 : {
+                        new com.contactManagement.features.callHistory.details.DetailsView().init();
+                        break;
+                    }
+                    case 2 : {
+                        System.out.println(" have to code");
+                        break;
+                    }
+                    case 3 : {
+                        exitApp();
+                    }
+                    default:{
+                        System.out.println("please enter valid option ");
+                        break;
+                    }
+                }
+            } catch( NumberFormatException e){
+                System.out.println( " please Enter valid Input format");
+            }
+
+
+        }
     }
 }

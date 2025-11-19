@@ -1,6 +1,7 @@
 package com.contactManagement.features.callHistory.search;
 
 import com.contactManagement.features.base.BaseView;
+import com.contactManagement.features.callHistory.CallHistoryView;
 import com.contactManagement.repositories.dto.CallRecord;
 
 import java.util.ArrayList;
@@ -40,6 +41,24 @@ public class SearchView extends BaseView {
                 int option = selectProcess(options);
 
                 switch (option) {
+
+                    case 1 : {
+                        getContactHistory();
+                        break;
+                    }
+                    case 2 : {
+                         new CallHistoryView().init();
+                         break;
+                    }
+                    case 3 : {
+                        System.out.println(" have to code");
+                    }
+                    case 4 : {
+                        exitApp();
+                    }
+                    default: {
+                        System.out.println(" please Enter Valid Number");
+                    }
 
                 }
 
