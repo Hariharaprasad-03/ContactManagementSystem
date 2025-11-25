@@ -23,7 +23,7 @@ public class CallView extends BaseView implements CallMenu {
             System.out.println("===== Call page =====");
 
             try {
-                int choice = selectOption(menu) ;
+                int choice = selectOption(menu);
 
                 switch (choice){
 

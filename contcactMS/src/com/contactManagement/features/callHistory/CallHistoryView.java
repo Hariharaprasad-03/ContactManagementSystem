@@ -54,6 +54,8 @@ public class CallHistoryView extends BaseView  implements CallHistoryMenu{
                 }
             } catch( NumberFormatException e){
                 System.out.println( " please Enter valid Input format");
+            } catch (Exception e){
+                System.out.println("please Enter Valid Comment ");
             }
 
 

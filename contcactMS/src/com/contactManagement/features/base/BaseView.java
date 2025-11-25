@@ -18,14 +18,13 @@ abstract public class BaseView {
     public int selectOption ( String[] options){
         Scanner sc = new Scanner(System.in);
         int option = -1;
-        System.out.println("Select the Option");
+
         for ( String op : options){
 
             System.out.println(op);
         }
         System.out.print("\nSelect the Option :");
-        option = sc.nextInt();
-        sc.close();
+        option = Integer.parseInt(sc.nextLine());
         return option;
     }
 }

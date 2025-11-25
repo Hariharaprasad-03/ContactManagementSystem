@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class ContactView extends BaseView  implements ContactMenu{
 
     private ContactModel model ;
-    private Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
 
     public ContactView (){

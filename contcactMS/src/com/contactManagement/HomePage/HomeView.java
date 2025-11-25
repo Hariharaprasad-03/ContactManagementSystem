@@ -2,22 +2,14 @@ package com.contactManagement.HomePage;
 
 import com.contactManagement.features.base.BaseView;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class HomeView extends BaseView {
+public class HomeView extends BaseView  implements Menu{
 
-    private List<String> options = new ArrayList<>();
 
-    public void loadOptions() {
-        options.add("1 . Contact Menu");
-        options.add("2 . Call Logs Menu ");
-        options.add("3 . Go to Caller");
-        options.add("4 . ExitApp");
-    }
+
+
     public  void init() {
 
-        loadOptions();
         showMenu();
     }
 
@@ -27,7 +19,7 @@ public class HomeView extends BaseView {
 
             System.out.println(" CMS Main Menu");
             try {
-                int option = selectProcess(options);
+                int option = selectOption(homeMenu);
 
                 switch( option) {
 

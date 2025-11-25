@@ -34,6 +34,7 @@ public class SearchView extends BaseView implements ContactMenu {
 
                     case 1 : {
                         getSearchDeatsils();
+                        break;
                     }
                     case 2 : {
                         new com.contactManagement.features.contact.ContactView().init();
@@ -65,8 +66,9 @@ public class SearchView extends BaseView implements ContactMenu {
             return ;
         }
         System.out.println("Search Details :");
-        for (Contact c : results){
-            System.out.println( c.toString());
+        for (Contact contact : results){
+            System.out.printf("\n%-15s  %-15s " , contact.getName(),
+                    contact.getPersonalNumber());
         }
 
     }
