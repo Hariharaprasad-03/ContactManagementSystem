@@ -9,11 +9,11 @@ import java.util.Deque;
 import java.util.List;
 
 public class ContactDb {
-    private List<Contact> contacts = new ArrayList<>();
-    private List<CallRecord> callHistory = new ArrayList<>();
-    private Deque<CallRecord> recentCalls = new ArrayDeque<>();
-    private List<String>existingNumbers = new ArrayList<>();
-    private  List<Contact>blockednumbers = new ArrayList<>();
+    private final List<Contact> contacts = new ArrayList<>();
+    private final List<CallRecord> callHistory = new ArrayList<>();
+    private final Deque<CallRecord> recentCalls = new ArrayDeque<>();
+    private final List<String>existingNumbers = new ArrayList<>();
+    private final List<Contact>blockednumbers = new ArrayList<>();
 
     private static ContactDb dbInstance;
     private UserInfo info ;
@@ -39,11 +39,16 @@ public class ContactDb {
 
         int index = contacts.indexOf(contact);
 
+        String number = contact.getPersonalNumber();
+        boolean exist = existingNumbers.stream().anyMatch(c->c.equals(number));
+        if (exist) return true;
+
         return index >= 0;
     }
 
     public void addContact(Contact contact){
         contacts.add(contact);
+        existingNumbers.add(contact.getPersonalNumber());
 
     }
 
