@@ -10,19 +10,22 @@ abstract public class BaseView {
         System.exit(0);
     }
 
-    public int selectProcess( List<String> process) {
+
+    public void init(){
+
+    }
+
+    public int selectOption ( String[] options){
         Scanner sc = new Scanner(System.in);
         int option = -1;
         System.out.println("Select the Option");
-        for ( String op : process){
+        for ( String op : options){
 
             System.out.println(op);
         }
         System.out.print("\nSelect the Option :");
         option = sc.nextInt();
+        sc.close();
         return option;
-    }
-    public void init(){
-
     }
 }

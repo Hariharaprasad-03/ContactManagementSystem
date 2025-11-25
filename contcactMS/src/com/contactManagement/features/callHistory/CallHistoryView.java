@@ -5,28 +5,21 @@ import com.contactManagement.features.base.BaseView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CallHistoryView extends BaseView {
+public class CallHistoryView extends BaseView  implements CallHistoryMenu{
 
     private CallHistoryModel model ;
-    private List<String> options ;
 
-    public CallHistoryView(){
+
+    public CallHistoryView() {
         this.model = new CallHistoryModel(this);
-        options = new ArrayList<>();
     }
 
     public void init(){
-        loadOptions();
+
         showMenu();
     }
 
-    public void loadOptions() {
 
-        options.add("1 . Call history Details");
-        options.add("2 . search call Logs");
-        options.add("3 . Back To Main Menu");
-        options.add("4 . Exit App");
-    }
 
     public void showMenu() {
 
@@ -35,7 +28,7 @@ public class CallHistoryView extends BaseView {
             System.out.println("\n====== Call Histroy View ======");
 
             try {
-                int option = selectProcess(options);
+                int option = selectOption(callHistoryViewMenu);
 
                 switch(option) {
 
@@ -45,13 +38,14 @@ public class CallHistoryView extends BaseView {
                     }
                     case 3 : {
                         new com.contactManagement.HomePage.HomeView().init();
-                        break;
+                        return ;
                     }
                     case 4 : {
                         exitApp();
                     }
                     case 2 : {
                         new com.contactManagement.features.callHistory.search.SearchView().init();
+                        return;
                     }
                     default:{
                         System.out.println("please enter valid option ");

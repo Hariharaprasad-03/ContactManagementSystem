@@ -7,9 +7,31 @@ public class CallRecord {
     private String callEndTime;
     private String callDuration;
 
-    public CallRecord(){
+    // --- NEW FIELDS ---
+    private String date;
+    private String time;
+    // ------------------
 
+    public CallRecord(){
     }
+
+    // --- NEW GETTERS AND SETTERS ---
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+    // -------------------------------
 
     public void setName(String name) {
         this.name = name;
@@ -50,5 +72,4 @@ public class CallRecord {
     public void setCallEndTime(String callEndTime) {
         this.callEndTime = callEndTime;
     }
-
 }

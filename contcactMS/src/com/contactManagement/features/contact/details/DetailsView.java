@@ -1,6 +1,7 @@
 package com.contactManagement.features.contact.details;
 
 import com.contactManagement.features.base.BaseView;
+import com.contactManagement.features.contact.ContactMenu;
 import com.contactManagement.features.contact.ContactView;
 import com.contactManagement.repositories.dto.Contact;
 
@@ -8,11 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class DetailsView  extends BaseView {
+public class DetailsView  extends BaseView implements ContactMenu {
 
     private final DetailsModel model ;
     private final Scanner scanner = new Scanner(System.in);
-    private List<String> options = new ArrayList<>();
+
 
 
      public DetailsView(){
@@ -21,15 +22,8 @@ public class DetailsView  extends BaseView {
 
     public void init() {
 
-         loadOptions();
          showMenu();
      }
-    public void loadOptions() {
-         options.add("1 . view contact details");
-         options.add("2 . Go to Contact Menu");
-         options.add("3 . Back to MainMenu");
-         options.add("4 . exit App");
-    }
 
 
     public void showMenu(){
@@ -39,7 +33,7 @@ public class DetailsView  extends BaseView {
             System.out.println("======= Contact Details Menu =======");
 
             try{
-                int choice = selectProcess(options);
+                int choice = selectOption(detailsMenu);
 
                 switch (choice){
                     case 1 :{
@@ -48,14 +42,14 @@ public class DetailsView  extends BaseView {
                     }
                     case 3: {
                         new com.contactManagement.HomePage.HomeView().init();
-                        break;
+                        return ;
                     }
                     case 4 : {
                         exitApp();
                     }
                     case 2 : {
                         new ContactView().init();
-                        break;
+                        return ;
                     }
                     default:{
                         System.out.println(" enter valid option");

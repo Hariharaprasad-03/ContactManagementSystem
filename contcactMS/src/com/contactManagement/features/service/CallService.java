@@ -1,6 +1,7 @@
 package com.contactManagement.features.service;
 
 import com.contactManagement.repositories.db.ContactDb;
+//import com.contactManagement.repositories.db.CallHistoryDb;
 import com.contactManagement.repositories.dto.CallRecord;
 import com.contactManagement.repositories.dto.Contact;
 
@@ -18,6 +19,10 @@ public class CallService {
     // Formatter for your String-based DTO fields
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
+    // --- ADDED: Formatters for specific Date and Time fields ---
+    private static final DateTimeFormatter dateOnlyFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter timeOnlyFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
     private CallService() {
         // Private constructor for Singleton
     }
@@ -32,7 +37,6 @@ public class CallService {
     public void makeCall() {
         Scanner scanner = new Scanner(System.in);
 
-        // 1. Get Name Input
         System.out.print("Enter name to call: ");
         String searchName = scanner.nextLine();
 
@@ -47,49 +51,31 @@ public class CallService {
 
         Contact contact = contactOpt.get();
 
-        // 2. Simulate Call (Start Setup)
         System.out.println("Connecting to " + contact.getName() + " (" + contact.getPersonalNumber() + ")...");
-
-        // <<< CHANGED HERE: Updated instruction text >>>
         System.out.println("Press 'Enter' to end the call.");
         System.out.println("------------------------------------------------");
 
         AtomicBoolean callActive = new AtomicBoolean(true);
-        LocalDateTime startTime = LocalDateTime.now();
+        LocalDateTime startTime = LocalDateTime.now(); // Capture time at start
 
-        // --- START BACKGROUND THREAD FOR TIMER ---
         Thread timerThread = new Thread(() -> {
             try {
                 while (callActive.get()) {
                     Duration duration = Duration.between(startTime, LocalDateTime.now());
                     long seconds = duration.getSeconds();
                     long absSeconds = Math.abs(seconds);
-
                     String timer = String.format("%02d:%02d", (absSeconds % 3600) / 60, absSeconds % 60);
-
                     System.out.print("\rSpeaking to " + contact.getName() + " [" + timer + "]");
-
                     Thread.sleep(1000);
                 }
             } catch (InterruptedException e) {
-                // Silent exit
             }
         });
 
         timerThread.start();
-        // -----------------------------------------
 
-        // 3. Wait for User Input (Enter Key Only)
-
-        // <<< CHANGED HERE: Logic to wait for Enter key >>>
-        // The scanner pauses here until the user hits 'Enter'.
-        // We don't need to check for specific text anymore.
-        scanner.nextLine();
-
-        // Once the line is read (Enter pressed), we stop the loop
+        scanner.nextLine(); // Wait for Enter
         callActive.set(false);
-
-        // <<< END OF CHANGES >>>
 
         try {
             timerThread.join();
@@ -113,11 +99,17 @@ public class CallService {
         record.setCallEndTime(endTime.format(formatter));
         record.setCallDuration(finalDuration);
 
+        // --- ADDED: Setting specific Date and Time fields ---
+        record.setDate(startTime.format(dateOnlyFormatter));
+        record.setTime(startTime.format(timeOnlyFormatter));
+
         addToDb(record);
     }
 
     private void addToDb(CallRecord record) {
         ContactDb.getInstance().addCallRecord(record);
         System.out.println(">> Call record saved: " + record.getName() + " | Duration: " + record.getCallDuration());
+        // Optional: Print for verification
+        System.out.println("   Date: " + record.getDate() + " | Time: " + record.getTime());
     }
 }

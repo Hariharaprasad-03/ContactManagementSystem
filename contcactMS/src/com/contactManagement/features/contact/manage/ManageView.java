@@ -1,6 +1,7 @@
 package com.contactManagement.features.contact.manage;
 
 import com.contactManagement.features.base.BaseView;
+import com.contactManagement.features.contact.ContactMenu;
 import com.contactManagement.features.contact.ContactView;
 import com.contactManagement.repositories.dto.Contact;
 
@@ -8,27 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ManageView extends BaseView {
+public class ManageView extends BaseView implements ContactMenu {
 
     private final  ManageModel model ;
     private final  Scanner scanner = new Scanner(System.in);
-    private List<String> options = new ArrayList<>();
+
 
     public ManageView (){
         this.model = new ManageModel(this);
     }
     public void init() {
-        loadOptions();
+
         showMenu();
     }
 
-    public void loadOptions() {
-        options.add("1 : Add new Contct") ;
-        options.add("2 : Delete Contact") ;
-        options.add("3 :Contacts Menu") ;
-        options.add("4 : Back to Main Menu") ;
-        options.add("5 : Exit") ;
-    }
+
 
     public void showMenu(){
 
@@ -38,7 +33,7 @@ public class ManageView extends BaseView {
 
                  System.out.println(" \n======= Contact Mange Menu ====== \n");
 
-                 int choice = selectProcess(options);
+                 int choice = selectOption(manageMenu);
                  switch (choice) {
                      case 1: {
                          addNewContact();
@@ -50,10 +45,11 @@ public class ManageView extends BaseView {
                      }
                      case 3: {
                          new ContactView().init();
+                         return ;
                      }
                      case 4 : {
                          new com.contactManagement.HomePage.HomeView().init();
-                         break;
+                         return ;
                      }
                      case 5 : {
                          exitApp();

@@ -4,34 +4,24 @@ import com.contactManagement.features.base.BaseView;
 import com.contactManagement.features.contact.search.SearchView;
 import com.contactManagement.repositories.dto.Contact;
 
-import java.util.ArrayList;
-import java.util.List;
+
 import java.util.Scanner;
 
-public class ContactView extends BaseView {
+public class ContactView extends BaseView  implements ContactMenu{
 
     private ContactModel model ;
     private Scanner scanner = new Scanner(System.in);
-    private List<String> options = new ArrayList<>();
+
 
     public ContactView (){
         model = new ContactModel(this);
     }
 
     public void init(){
-        loadOptions();
+
         showMenu();
     }
-    public void loadOptions() {
-        options.add("1 : View All Contact List");
-        options.add("2 : Manage Contacts ");
-        options.add("3 : view Contact Details");
-        options.add("4 : search Contact ");
-        options.add("5 : Go to Caller");
-        options.add("6 : back to MainMenu");
-        options.add("7 : Exit App");
 
-    }
 
     public void showMenu(){
 
@@ -39,7 +29,7 @@ public class ContactView extends BaseView {
 
             System.out.println("\n====== Contact Menu ========");
             try {
-                int choice = selectProcess(options);
+                int choice = selectOption(contactViewMenu);
 
                 switch(choice)
                 {
@@ -49,25 +39,27 @@ public class ContactView extends BaseView {
                     }
                     case 2 :{
                         new com.contactManagement.features.contact.manage.ManageView().init();
-                        break;
+                        return ;
                     }
                     case 3 : {
                         new com.contactManagement.features.contact.details.DetailsView().init();
-                        break;
+                        return ;
                     }
                     case 4 : {
                         new com.contactManagement.features.contact.search.SearchView().init();
-                        break;
+                        return ;
                     }
                     case 5 :{
                         new com.contactManagement.features.service.CallView().init();
+                        return ;
                     }
                     case 7 :{
                         exitApp();
                     }
                     case 6 : {
                         new com.contactManagement.HomePage.HomeView().init();
-                        break;
+                        return ;
+
                     }
                     default:{
                         System.out.println("\nplease enter valid Option ");

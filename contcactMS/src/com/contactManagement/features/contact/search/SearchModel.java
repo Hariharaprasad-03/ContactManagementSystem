@@ -12,11 +12,13 @@ public class SearchModel extends BaseModel{
     private SearchView view ;
 
     SearchModel(SearchView view){
+
         this.view = view;
     }
+
     public void getSearchResults( String name){
         List<Contact>result = ContactDb.getInstance().getAllContacts().stream()
-                .filter(c -> c.getName().startsWith(name)).collect(Collectors.toList());
+                .filter(c -> c.getName().toLowerCase().contains(name)).collect(Collectors.toList());
         view.displaySearchResults(result);
     }
 

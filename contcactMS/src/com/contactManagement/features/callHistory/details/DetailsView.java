@@ -1,33 +1,28 @@
 package com.contactManagement.features.callHistory.details;
 
 import com.contactManagement.features.base.BaseView;
+import com.contactManagement.features.callHistory.CallHistoryMenu;
 import com.contactManagement.features.callHistory.CallHistoryView;
 import com.contactManagement.repositories.dto.CallRecord;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailsView  extends BaseView {
+public class DetailsView  extends BaseView implements CallHistoryMenu {
 
      private DetailsModel model ;
-     List<String> options ;
+
 
      public DetailsView()
      {
          this.model = new DetailsModel(this);
-         options = new ArrayList<>();
+
      }
 
-     public void loadOptions(){
-         options.add("1 . display All call logs");
-         options.add("2 . display Recent call logs");
-         options.add("3 . go to Call log menu");
-         options.add("4 . Back To MainMenu");
-         options.add("5 . exitApp");
-     }
+
 
      public void init() {
-         loadOptions();
+
          showMenu();
      }
      public void showMenu() {
@@ -36,7 +31,7 @@ public class DetailsView  extends BaseView {
 
              try {
 
-                 int option = selectProcess(options);
+                 int option = selectOption(detailMenu);
 
                  switch (option) {
 
@@ -50,11 +45,11 @@ public class DetailsView  extends BaseView {
                      }
                      case 3: {
                          new CallHistoryView().init();
-                         break ;
+                         return;
                      }
                      case 4: {
                          new com.contactManagement.HomePage.HomeView().init();
-                         break;
+                         return;
                      }
                      case 5: {
                          exitApp();
@@ -76,11 +71,11 @@ public class DetailsView  extends BaseView {
      }
 
      public void displayRecords(List<CallRecord> records){
-         System.out.printf("%-15s %-15s %-10s\n","Contact Name","Contact Number","Call Duration");
+         System.out.printf("%-15s %-15s %-10s %-10s %-10s\n","Contact Name","Contact Number","Duration","Time","Date");
          for ( CallRecord record : records) {
 
-             System.out.printf("%-15s %-15s %-10s\n",
-                     record.getName(),record.getContactNo(),record.getCallDuration());
+             System.out.printf("%-15s %-15s %-10s %-10s %-10s\n",
+                     record.getName(),record.getContactNo(),record.getCallDuration(),record.getTime(),record.getDate());
          }
      }
 

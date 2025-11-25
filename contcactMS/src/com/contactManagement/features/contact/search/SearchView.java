@@ -1,33 +1,25 @@
 package com.contactManagement.features.contact.search;
 
 import com.contactManagement.features.base.BaseView;
+import com.contactManagement.features.contact.ContactMenu;
 import com.contactManagement.repositories.dto.Contact;
 
-import java.util.ArrayList;
+
 import java.util.List;
 import java.util.Scanner;
 
-public class SearchView extends BaseView {
+public class SearchView extends BaseView implements ContactMenu {
 
     private final SearchModel model;
     private final Scanner scanner = new Scanner(System.in);
-    private List<String> options = new ArrayList<>();
+
 
     public SearchView(){
         this.model = new SearchModel(this);
     }
     public  void init() {
-         loadOptions();
+
          showMenu();
-    }
-
-    public void loadOptions() {
-
-        options.add("1 .  search contact") ;
-        options.add("2 .  Go to Contacts Menu");
-        options.add("3 . Back To MainMenu") ;
-        options.add("3 . exit App()") ;
-
     }
 
     private void showMenu(){
@@ -36,7 +28,7 @@ public class SearchView extends BaseView {
             System.out.println("===== Search Contact Details =====");
 
             try {
-                int choice = selectProcess(options) ;
+                int choice = selectOption(searchMenu) ;
 
                 switch (choice){
 
@@ -45,10 +37,11 @@ public class SearchView extends BaseView {
                     }
                     case 2 : {
                         new com.contactManagement.features.contact.ContactView().init();
+                        return ;
                     }
                     case 3 : {
                         new com.contactManagement.HomePage.HomeView().init();
-                        break;
+                        return ;
                     }
                     case 4 : {
                         exitApp();
@@ -68,6 +61,7 @@ public class SearchView extends BaseView {
     public void displaySearchResults(List<Contact> results){
         if ( results == null || results.size()==0){
             System.out.println(" No results Found !");
+            getSearchDeatsils();  // Added for not to retrive the BackPage
             return ;
         }
         System.out.println("Search Details :");

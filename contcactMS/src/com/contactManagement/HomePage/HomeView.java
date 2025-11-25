@@ -13,7 +13,7 @@ public class HomeView extends BaseView {
         options.add("1 . Contact Menu");
         options.add("2 . Call Logs Menu ");
         options.add("3 . Go to Caller");
-        options.add("3 . ExitApp");
+        options.add("4 . ExitApp");
     }
     public  void init() {
 

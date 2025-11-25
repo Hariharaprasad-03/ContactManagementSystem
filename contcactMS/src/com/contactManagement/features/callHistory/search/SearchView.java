@@ -1,6 +1,7 @@
 package com.contactManagement.features.callHistory.search;
 
 import com.contactManagement.features.base.BaseView;
+import com.contactManagement.features.callHistory.CallHistoryMenu;
 import com.contactManagement.features.callHistory.CallHistoryView;
 import com.contactManagement.repositories.dto.CallRecord;
 
@@ -8,26 +9,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class SearchView extends BaseView {
+public class SearchView extends BaseView implements CallHistoryMenu {
 
     private SearchModel model;
-    private List<String> options ;
     private Scanner scanner = new Scanner(System.in);
 
     public SearchView(){
         this.model = new SearchModel(this);
-        options = new ArrayList<>();
+
     }
 
-    public void loadOptions(){
-        options.add("1 .get Contact Call History");
-        options.add("2 . Back To CallHistory view");
-        options.add("3 . Back To Main Menu");
-        options.add("4 . Exit App");
-    }
+
 
     public void init() {
-        loadOptions();
+
         showMenu();
     }
 
@@ -38,7 +33,7 @@ public class SearchView extends BaseView {
             System.out.println("===== call history Search view ======");
 
             try {
-                int option = selectProcess(options);
+                int option = selectOption(searchMenu);
 
                 switch (option) {
 
@@ -48,11 +43,11 @@ public class SearchView extends BaseView {
                     }
                     case 2 : {
                          new CallHistoryView().init();
-                         break;
+                         return ;
                     }
                     case 3 : {
                         new com.contactManagement.HomePage.HomeView().init();
-                        break;
+                        return ;
                     }
                     case 4 : {
                         exitApp();
