@@ -5,14 +5,13 @@ import com.contactManagement.features.callHistory.CallHistoryMenu;
 import com.contactManagement.features.callHistory.CallHistoryView;
 import com.contactManagement.repositories.dto.CallRecord;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class SearchView extends BaseView implements CallHistoryMenu {
 
-    private SearchModel model;
-    private Scanner scanner = new Scanner(System.in);
+    private final SearchModel model;
+    private final Scanner scanner = new Scanner(System.in);
 
     public SearchView(){
         this.model = new SearchModel(this);
@@ -73,7 +72,7 @@ public class SearchView extends BaseView implements CallHistoryMenu {
 
     }
     public String getName(){
-        String name = "";
+        String name ;
         do {
             name = scanner.nextLine().trim();
 

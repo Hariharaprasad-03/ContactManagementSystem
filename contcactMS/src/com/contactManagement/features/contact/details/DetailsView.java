@@ -5,8 +5,6 @@ import com.contactManagement.features.contact.ContactMenu;
 import com.contactManagement.features.contact.ContactView;
 import com.contactManagement.repositories.dto.Contact;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class DetailsView  extends BaseView implements ContactMenu {

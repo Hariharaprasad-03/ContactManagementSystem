@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ContactModel {
 
-    private ContactView view ;
+    private final  ContactView view ;
 
     ContactModel(ContactView view){
         this.view = view ;

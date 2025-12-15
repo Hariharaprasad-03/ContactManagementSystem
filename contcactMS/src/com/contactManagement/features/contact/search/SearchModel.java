@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class SearchModel extends BaseModel{
-    private SearchView view ;
+    private final SearchView view ;
 
     SearchModel(SearchView view){
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DetailsModel extends BaseModel {
 
-    private DetailsView view ;
+    private  final DetailsView view ;
 
     DetailsModel(DetailsView view){
         this.view = view ;
@@ -18,7 +18,7 @@ public class DetailsModel extends BaseModel {
     public void getAllCallLogs() {
 
         List<CallRecord> lists = ContactDb.getInstance().getAllCallHistory();
-        if( lists.size()==0){
+        if( lists.isEmpty()){
             view.showMessage(" No Call Records Found");
         }
         view.displayRecords(lists);
@@ -27,7 +27,7 @@ public class DetailsModel extends BaseModel {
     public void getRecentCalls(){
         List<CallRecord> recentCalls = ContactDb.getInstance().getRecentCalls();
 
-        if( recentCalls.size() == 0) {
+        if( recentCalls.isEmpty()) {
             view.showMessage(" No Recent Calls Found");
         }
         view.displayRecords(recentCalls);

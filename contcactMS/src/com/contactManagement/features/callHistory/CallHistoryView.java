@@ -2,12 +2,10 @@ package com.contactManagement.features.callHistory;
 
 import com.contactManagement.features.base.BaseView;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class CallHistoryView extends BaseView  implements CallHistoryMenu{
 
-    private CallHistoryModel model ;
+    private final CallHistoryModel model ;
 
 
     public CallHistoryView() {

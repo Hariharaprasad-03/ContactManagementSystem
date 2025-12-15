@@ -1,16 +1,14 @@
 package com.contactManagement.features.contact;
 
 import com.contactManagement.features.base.BaseView;
-import com.contactManagement.features.contact.search.SearchView;
 import com.contactManagement.repositories.dto.Contact;
 
 
-import java.util.Scanner;
 
 public class ContactView extends BaseView  implements ContactMenu{
 
-    private ContactModel model ;
-    private final Scanner scanner = new Scanner(System.in);
+    private final ContactModel model ;
+
 
 
     public ContactView (){

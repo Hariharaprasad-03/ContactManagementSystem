@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class SearchModel extends BaseModel {
 
-    private SearchView view ;
+    private final SearchView view ;
 
     SearchModel(SearchView view ) {
         this.view = view ;
@@ -22,7 +22,7 @@ public class SearchModel extends BaseModel {
                 .filter(c -> c.getName().equalsIgnoreCase(name)) // Use filter to keep matching records
                 .collect(Collectors.toList());
 
-        if ( records.size() == 0){
+        if ( records.isEmpty()){
             view.showMessage("There is No Call log for this Contact");
             return ;
         }

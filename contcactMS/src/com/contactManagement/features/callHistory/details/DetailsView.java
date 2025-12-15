@@ -5,12 +5,11 @@ import com.contactManagement.features.callHistory.CallHistoryMenu;
 import com.contactManagement.features.callHistory.CallHistoryView;
 import com.contactManagement.repositories.dto.CallRecord;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DetailsView  extends BaseView implements CallHistoryMenu {
 
-     private DetailsModel model ;
+     private final DetailsModel model ;
 
 
      public DetailsView()

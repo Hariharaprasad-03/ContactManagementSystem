@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public class ManageModel extends BaseModel {
 
-    private ManageView view ;
+    private final  ManageView view ;
     public ManageModel(ManageView view){
 
         this.view = view ;

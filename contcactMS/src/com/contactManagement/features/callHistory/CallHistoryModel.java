@@ -4,7 +4,7 @@ import com.contactManagement.features.base.BaseModel;
 
 public class CallHistoryModel extends BaseModel {
 
-    private CallHistoryView view ;
+    private final  CallHistoryView view ;
 
     CallHistoryModel(CallHistoryView view){
         this.view = view ;

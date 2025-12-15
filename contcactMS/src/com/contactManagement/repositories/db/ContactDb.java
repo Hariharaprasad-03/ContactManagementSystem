@@ -65,7 +65,6 @@ public class ContactDb {
     }
 
     public void addBlockeList(Contact contact){
-
        blockednumbers.add(contact);
     }
 
